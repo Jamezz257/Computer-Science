@@ -1,0 +1,4 @@
+Z:\Computer Science\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.vbprojAssemblyReference.cache
+Z:\Computer Science\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.Resources.resources
+Z:\Computer Science\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.vbproj.GenerateResource.cache
+Z:\Computer Science\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.vbproj.CoreCompileInputs.cache

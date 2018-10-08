@@ -1,0 +1,25 @@
+Module Module1
+
+    Sub main()
+        Dim reply As String
+        Console.WriteLine("Are you happy?")
+        getresponse(reply)
+
+        If reply = "y" Then
+            Console.WriteLine("that's good")
+        ElseIf reply = "n" Then
+            Console.WriteLine("that's not so good")
+        End If
+
+        Console.ReadLine()
+    End Sub
+
+    Sub getresponse(ByRef reply As String)
+        Do Until reply = "y" Or reply = "n"
+            Console.WriteLine("please enter y or n ")
+            reply = Console.ReadLine
+        Loop
+    End Sub
+
+
+End Module

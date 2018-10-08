@@ -1,0 +1,32 @@
+Module Module1
+    Dim grade As String
+    Dim mark As Integer
+    Dim name As String
+    Sub main()
+
+
+        Console.WriteLine("Please Enter Your name")
+        name = Console.ReadLine
+        Console.WriteLine("Now Enter Your Marks")
+        mark = Console.ReadLine
+
+        gettinggrade(grade)
+
+        Console.WriteLine(name & " Got A " & grade)
+        Console.ReadLine()
+    End Sub
+
+    Sub gettinggrade(ByRef grade As String)
+
+        If mark >= 80 Then
+                grade = "Distinction"
+            ElseIf mark >= 65 <= 79 Then
+                grade = "Merit"
+            ElseIf mark >= 50 <= 64 Then
+                grade = "Pass"
+            ElseIf mark < 50 Then
+                grade = "Fail"
+            End If
+
+    End Sub
+End Module

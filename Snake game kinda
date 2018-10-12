@@ -1,7 +1,7 @@
 Imports System.Threading
 Module Module1
-    Dim maxX As Integer = 80
-    Dim maxY As Integer = 20
+    Dim maxX As Integer
+    Dim maxY As Integer
     Dim snekposX As Integer
     Dim snekposY As Integer
     Dim pills(9, 9) As Integer
@@ -9,17 +9,27 @@ Module Module1
     Dim hitside As Integer = 0
     Dim key As String
     Dim quit As Integer = 0
-    Dim snekchar As String = "@"
+    Dim snekchar As String = "▀"
+
 
     Sub Main()
+        Console.WriteLine("How wide shall the screen be?")
+        maxX = Console.ReadLine
+        Console.WriteLine("How far down would you like it to go?")
+        maxY = Console.ReadLine
+        Console.Clear()
+
         Console.CursorVisible = False
         drawgamearea(maxX, maxY)
         setsnekpos(snekposX, snekposY, maxX, maxY, snekchar)
         drawpills(pills, maxX, maxY)
 
+        Dim scoreposX As Integer = maxX + 5
+        Dim scoreposY As Integer = 1
+
 
         Do
-            Thread.Sleep(200)
+            Thread.Sleep(50)
             If Console.KeyAvailable = True Then
                 getkey(key, quit, snekposX, snekposY)
                 For i = 1 To 9
@@ -35,7 +45,10 @@ Module Module1
                 checkborder(snekposX, snekposY, hitside, maxX, maxY)
             End If
 
-        Loop Until hitside = 1 Or quit = 1
+            Console.SetCursorPosition(scoreposX, scoreposY)
+            Console.WriteLine("Current Score: " & score)
+
+        Loop Until hitside = 1 Or quit = 1 Or score = 9
         finalmessage(hitside, quit, score)
         Console.ReadLine()
     End Sub
@@ -76,8 +89,8 @@ Module Module1
     Sub drawpills(pills, maxX, maxY)
         For i = 1 To 9
             Randomize()
-            pills(i, 0) = Int(79 * Rnd() + 1)
-            pills(i, 1) = Int(19 * Rnd() + 1)
+            pills(i, 0) = Int((maxX - 1) * Rnd() + 1)
+            pills(i, 1) = Int((maxY - 1) * Rnd() + 1)
             Console.SetCursorPosition(pills(i, 0), pills(i, 1))
             Console.WriteLine("*")
         Next
@@ -130,9 +143,10 @@ Module Module1
         Console.WriteLine("Your final score is " & score)
         If hitside = 1 Then
             Console.WriteLine("You died by crashing into the edge")
-        End If
-        If quit = 1 Then
+        ElseIf quit = 1 Then
             Console.WriteLine("You quit the game")
+        ElseIf score = 9 Then
+            Console.WriteLine("You win!")
         End If
     End Sub
 End Module

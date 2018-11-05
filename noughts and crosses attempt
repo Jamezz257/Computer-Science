@@ -1,0 +1,272 @@
+Module Module1
+
+
+    Dim position As Integer
+    Dim coordinates(8)
+    Dim x As Integer = 2
+    Dim y As Integer = 1
+
+
+    Sub Main()
+        numberpositions()
+        Grid()
+        numbers(x, y)
+        firstplayer()
+
+        Console.ReadLine()
+    End Sub
+
+    Sub Grid()
+
+        Dim x As Integer = 6
+        Dim y As Integer = 1
+        Dim number As Integer = 1
+
+        Console.SetCursorPosition(0, 0)
+        Console.Write(ChrW(&H250C))
+
+        'Top row
+        For i = 1 To 2
+
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H252C))
+        Next
+        Console.Write(ChrW(&H2500))
+        Console.Write(ChrW(&H2500))
+        Console.Write(ChrW(&H2500))
+        Console.WriteLine(ChrW(&H2510))
+        'End of top row
+
+        'Middle rows
+        For q = 1 To 2
+            For o = 1 To 3
+                Console.Write(ChrW(&H2502))
+                Console.Write("   ")
+            Next
+            Console.WriteLine(ChrW(&H2502))
+
+            Console.Write(ChrW(&H251C))
+            For p = 1 To 2
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H253C))
+            Next
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H2500))
+            Console.WriteLine(ChrW(&H2524))
+        Next
+        'End of middle rows
+        For i = 1 To 4
+            Console.Write(ChrW(&H2502))
+            Console.Write("   ")
+        Next
+        Console.WriteLine("")
+        Console.Write(ChrW(&H2514))
+        For i = 1 To 2
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H2500))
+            Console.Write(ChrW(&H2534))
+        Next
+
+        Console.Write(ChrW(&H2500))
+        Console.Write(ChrW(&H2500))
+        Console.Write(ChrW(&H2500))
+        Console.Write(ChrW(&H2518))
+
+
+
+    End Sub
+
+    Sub firstplayer()
+        Dim first As Integer
+        Do
+            Console.SetCursorPosition(1, 7)
+            Console.WriteLine("Which player would like to go first (1 or 2)?")
+            first = Console.ReadLine
+        Loop Until first = 1 Or first = 2
+
+        If first = 1 Then
+
+            For i = 1 To 4
+                questionX()
+                checkpositions(coordinates)
+                questionO()
+                checkpositions(coordinates)
+            Next
+            questionX()
+            checkpositions(coordinates)
+        ElseIf first = 2 Then
+
+            For i = 1 To 4
+                questionO()
+                checkpositions(coordinates)
+                questionX()
+                checkpositions(coordinates)
+            Next
+            questionO()
+            checkpositions(coordinates)
+        Else Console.WriteLine("That's not a playerrrrrrrrrrrrrr")
+        End If
+
+    End Sub
+
+    Sub numbers(ByRef x, ByRef y)
+        Dim number As Integer = 0
+
+        For i = 1 To 3
+            For j = 1 To 3
+                Console.SetCursorPosition(x, y)
+                Console.Write(number)
+                number = number + 1
+                x = x + 4
+            Next
+            x = 2
+            y = y + 2
+        Next
+
+
+    End Sub
+
+    Sub questionX()
+        Do
+            Console.SetCursorPosition(1, 7)
+            Console.WriteLine("Player 1, where would you like to place your X?")
+            position = Console.ReadLine
+            If position >= 9 Then
+                Console.WriteLine("Please try again")
+            End If
+        Loop Until position < 9
+        BoardplaceX(coordinates)
+    End Sub
+
+    Sub questionO()
+        Do
+            Console.SetCursorPosition(1, 7)
+            Console.WriteLine("Player 2, where would you like to place your O?")
+            position = Console.ReadLine
+            If position >= 9 Then
+                Console.WriteLine("Please try again")
+            End If
+        Loop Until position < 9
+        BoardplaceO(coordinates)
+    End Sub
+
+    Sub BoardplaceX(ByRef coordinates)
+
+        If position = 0 Then
+            Console.SetCursorPosition(2, 1)
+            Console.Write("X")
+            coordinates(0) = "X"
+        ElseIf position = 1 Then
+            Console.SetCursorPosition(6, 1)
+            Console.Write("X")
+            coordinates(1) = "X"
+        ElseIf position = 2 Then
+            Console.SetCursorPosition(10, 1)
+            Console.Write("X")
+            coordinates(2) = "X"
+        ElseIf position = 3 Then
+            Console.SetCursorPosition(2, 3)
+            Console.Write("X")
+            coordinates(3) = "X"
+        ElseIf position = 4 Then
+            Console.SetCursorPosition(6, 3)
+            Console.Write("X")
+            coordinates(4) = "X"
+        ElseIf position = 5 Then
+            Console.SetCursorPosition(10, 3)
+            Console.Write("X")
+            coordinates(5) = "X"
+        ElseIf position = 6 Then
+            Console.SetCursorPosition(2, 5)
+            Console.Write("X")
+            coordinates(6) = "X"
+        ElseIf position = 7 Then
+            Console.SetCursorPosition(6, 5)
+            Console.Write("X")
+            coordinates(7) = "X"
+        ElseIf position = 8 Then
+            Console.SetCursorPosition(10, 5)
+            Console.Write("X")
+            coordinates(8) = "X"
+        End If
+
+    End Sub
+
+    Sub BoardplaceO(ByRef coordinates)
+
+        If position = 0 Then
+            Console.SetCursorPosition(2, 1)
+            Console.Write("O")
+            coordinates(0) = "O"
+        ElseIf position = 1 Then
+            Console.SetCursorPosition(6, 1)
+            Console.Write("O")
+            coordinates(1) = "O"
+        ElseIf position = 2 Then
+            Console.SetCursorPosition(10, 1)
+            Console.Write("O")
+            coordinates(2) = "O"
+        ElseIf position = 3 Then
+            Console.SetCursorPosition(2, 3)
+            Console.Write("O")
+            coordinates(3) = "O"
+        ElseIf position = 4 Then
+            Console.SetCursorPosition(6, 3)
+            Console.Write("O")
+            coordinates(4) = "O"
+        ElseIf position = 5 Then
+            Console.SetCursorPosition(10, 3)
+            Console.Write("O")
+            coordinates(5) = "O"
+        ElseIf position = 6 Then
+            Console.SetCursorPosition(2, 5)
+            Console.Write("O")
+            coordinates(6) = "O"
+        ElseIf position = 7 Then
+            Console.SetCursorPosition(6, 5)
+            Console.Write("O")
+            coordinates(7) = "O"
+        ElseIf position = 8 Then
+            Console.SetCursorPosition(10, 5)
+            Console.Write("O")
+            coordinates(8) = "O"
+        End If
+
+    End Sub
+
+    Sub numberpositions()
+
+        coordinates(0) = ""
+        coordinates(1) = ""
+        coordinates(2) = ""
+        coordinates(3) = ""
+        coordinates(4) = ""
+        coordinates(5) = ""
+        coordinates(6) = ""
+        coordinates(7) = ""
+        coordinates(8) = ""
+
+
+    End Sub
+
+    Sub checkpositions(ByVal coordinates)
+
+        If coordinates(0) = coordinates(1) And coordinates(1) = coordinates(2) Then
+            Console.SetCursorPosition(1, 10)
+            Console.WriteLine("You won")
+        Else
+        End If
+
+
+
+    End Sub
+
+
+
+End Module

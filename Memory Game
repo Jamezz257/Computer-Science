@@ -1,0 +1,245 @@
+Imports System.Threading
+Module Module1
+    Dim position(15) As String
+    Dim card(15) As String
+    Dim NumberForLetter As Integer = 0
+    Dim answer As String
+    Dim points As Integer = 0
+    Dim won As Integer = 0
+    Dim cardarraypos As Integer
+    Dim posarray(15, 1)
+    Dim answer1 As Integer
+    Dim answer2 As Integer
+    Dim q As Integer
+    Dim a As Integer = 0
+    Dim b As Integer = 4
+    Dim c As Integer = 2
+
+
+    Sub main()
+        Letterpositions()
+        DrawGrid()
+        randomnumbers(card)
+        Do
+            X_Y_positions()
+            question1()
+            question2()
+        Loop Until won = 1
+        Console.WriteLine("You win")
+        Console.ReadLine()
+    End Sub
+    Sub Letterpositions()
+
+        position(0) = "A" 'The position of the letter (1st card is A, 2nd card is B etc.)
+        position(1) = "B"
+        position(2) = "C"
+        position(3) = "D"
+        position(4) = "E"
+        position(5) = "F"
+        position(6) = "G"
+        position(7) = "H"
+        position(8) = "I"
+        position(9) = "J"
+        position(10) = "K"
+        position(11) = "L"
+        position(12) = "M"
+        position(13) = "N"
+        position(14) = "O"
+        position(15) = "P"
+
+
+    End Sub
+
+    Sub DrawGrid()
+
+        For y = 1 To 4
+            Console.WriteLine("")
+            Console.Write("  ")
+
+            For x = 1 To 4
+                Console.Write(ChrW(&H250C))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2510))
+                Console.Write("  ")
+            Next
+
+            Console.WriteLine("")
+
+            For z = 1 To 4
+                Console.Write("")
+                Console.Write("  ")
+                Console.Write(ChrW(&H2502))
+                Console.Write(" " & position(NumberForLetter) & " ")
+                NumberForLetter = NumberForLetter + 1
+                Console.Write(ChrW(&H2502))
+            Next
+
+            Console.WriteLine("")
+            Console.Write("  ")
+            For p = 1 To 4
+
+                Console.Write(ChrW(&H2514))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2500))
+                Console.Write(ChrW(&H2518))
+                Console.Write("  ")
+            Next
+
+
+
+        Next
+    End Sub
+
+    Sub randomnumbers(ByRef card)
+        Dim rand As New Random
+        Dim valid As Integer = 0
+        RandomCard()
+        For i = 1 To 8
+            valid = 0
+            Do
+                cardarraypos = rand.Next(0, 16)
+                If card(cardarraypos) = "" Then
+                    card(cardarraypos) = i
+                    valid = valid + 1
+                End If
+            Loop Until valid = 2
+        Next
+
+    End Sub
+
+    Sub RandomCard()
+
+        card(1) = "" 'The randomly generated number that is meant to be matched
+        card(2) = ""
+        card(3) = ""
+        card(4) = ""
+        card(5) = ""
+        card(6) = ""
+        card(7) = ""
+        card(8) = ""
+
+
+    End Sub
+
+    Sub question1()
+
+        Console.SetCursorPosition(2, 14)
+        Console.WriteLine("Pick card number 1 ")
+        answer = Console.ReadLine
+        convert(answer, q)
+        answer1 = q
+        Console.SetCursorPosition(b, c)
+        Console.Write(card(cardarraypos))
+
+    End Sub
+
+    Sub convert(ByRef answer As String,
+                ByRef q As Integer)
+        Select Case answer
+            Case "A"
+                q = 0
+            Case "B"
+                q = 1
+            Case "C"
+                q = 2
+            Case "D"
+                q = 3
+            Case "E"
+                q = 4
+            Case "F"
+                q = 5
+            Case "G"
+                q = 6
+            Case "H"
+                q = 7
+            Case "I"
+                q = 8
+            Case "J"
+                q = 9
+            Case "K"
+                q = 10
+            Case "L"
+                q = 11
+            Case "M"
+                q = 12
+            Case "N"
+                q = 13
+            Case "O"
+                q = 14
+            Case "P"
+                q = 15
+        End Select
+
+    End Sub
+
+    Sub question2()
+
+        Console.SetCursorPosition(2, 16)
+        Console.WriteLine("Pick card number 2")
+        answer = Console.ReadLine
+        convert(answer, q)
+        answer2 = q
+
+        Thread.Sleep(3000)
+
+        If answer1 = answer2 Then
+
+            Console.SetCursorPosition(b, c)
+            Console.Write("#")
+            points = points + 1
+
+        Else
+            Console.SetCursorPosition(b, c)
+            Console.Write(position(a))
+
+        End If
+        If points = 8 Then
+            won = 1
+        End If
+
+
+    End Sub
+
+    Sub X_Y_positions()
+
+        posarray(0, 0) = 4
+        posarray(0, 1) = 2
+        posarray(1, 0) = 11
+        posarray(1, 1) = 2
+        posarray(2, 0) = 18
+        posarray(2, 1) = 2
+        posarray(3, 0) = 25
+        posarray(3, 1) = 2
+        posarray(4, 0) = 4
+        posarray(4, 1) = 5
+        posarray(5, 0) = 11
+        posarray(5, 1) = 5
+        posarray(6, 0) = 18
+        posarray(6, 1) = 5
+        posarray(7, 0) = 25
+        posarray(7, 1) = 5
+        posarray(8, 0) = 4
+        posarray(8, 1) = 8
+        posarray(9, 0) = 11
+        posarray(9, 1) = 8
+        posarray(10, 0) = 18
+        posarray(10, 1) = 8
+        posarray(11, 0) = 25
+        posarray(11, 1) = 8
+        posarray(12, 0) = 4
+        posarray(12, 1) = 11
+        posarray(13, 0) = 11
+        posarray(13, 1) = 11
+        posarray(14, 0) = 18
+        posarray(14, 1) = 11
+        posarray(15, 0) = 25
+        posarray(15, 1) = 11
+
+
+
+    End Sub
+
+End Module
